@@ -567,7 +567,7 @@ function GameScreen({ level, onFinish }) {
     setTimeout(() => {
       setFeedback(null);
       nextQuestion(newTier);
-    }, ok ? 260 : 650);
+    }, ok ? 300 : 1300);
   };
 
   const pct = Math.max(0, timeLeft / SESSION_SECONDS);
@@ -616,11 +616,23 @@ function GameScreen({ level, onFinish }) {
           style={{
             width: "100%", boxSizing: "border-box", padding: "16px", borderRadius: 12,
             border: `2px solid ${feedback === "ok" ? T.sage : feedback === "ko" ? T.coral : T.rule}`,
-            background: T.bg2, color: T.chalk, fontSize: 22, textAlign: "center", marginBottom: 14,
+            background: T.bg2, color: T.chalk, fontSize: 22, textAlign: "center", marginBottom: 10,
           }}
           className="sg"
           autoComplete="off"
         />
+        <button
+          type="submit"
+          disabled={!!feedback || input.trim() === ""}
+          style={{
+            width: "100%", padding: "14px", borderRadius: 12, border: "none",
+            background: (!feedback && input.trim() !== "") ? T.amber : T.rule,
+            color: (!feedback && input.trim() !== "") ? "#1B2A22" : T.chalkDim,
+            fontWeight: 700, fontSize: 16, marginBottom: 14,
+          }}
+        >
+          Valider
+        </button>
       </form>
 
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
